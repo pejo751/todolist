@@ -5,12 +5,12 @@ FactoryGirl.define do
     name "MyString"
     programmer "MyString"
     project "MyString"
-    priority "Low"
+    # priority "Low"
     notes "MyText"
     budget "9.99"
-    start_date "2013-10-03"
-    due_date "2013-10-03"
-    progress 0
-    status "Not started"
+    # start_date "2013-10-03"
+    # due_date "2013-10-03"
+    # progress 0
+    # status "Not started"
   end
 end

@@ -29,21 +29,6 @@ describe Task do
       expect(@task.errors).to have_at_least(1).errors_on(:programmer)
     end
 
-    context "with valid #priority" do
-      before :each do
-        @task.priority = Task::PRIORITY_DOMAIN.first
-      end
-
-      it 'returns a valid record' do
-        expect(@task.valid?).to be_true
-      end
-
-      it 'does not raises an error for #priority' do
-        @task.valid?
-        expect(@task.errors).to_not have_at_least(1).errors_on(:priority)
-      end
-    end
-
     context "with invalid #priority" do
       before :each do
         @task.priority = 99
@@ -70,21 +55,6 @@ describe Task do
         @task.budget = -1
         @task.valid?
         expect(@task.errors).to have_at_least(1).errors_on(:budget)
-      end
-    end
-
-    context 'with #start_date' do
-      before :each do
-        @task.start_date = nil
-      end
-
-      it 'requires #start_date' do
-        expect(@task.valid?).to be_false
-      end
-
-      it 'raises an error when empty' do
-        @task.valid?
-        expect(@task.errors).to have_at_least(1).errors_on(:start_date)
       end
     end
 
@@ -175,6 +145,10 @@ describe Task do
 
     it "#progress is setted to 0" do
       expect(@task.progress).to eq(0)
+    end
+
+    it "#priority is setted with the default value" do
+      expect(@task.priority).to eq(Task::DEFAULT_PRIORITY)
     end
 
     it "#status is setted with the default value" do

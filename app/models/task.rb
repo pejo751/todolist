@@ -18,7 +18,8 @@ class Task < ActiveRecord::Base
 
   def initialize(attributes=nil)
     attr_with_defaults = {
-        progress: 0,
+        budget: '0.00',
+        progress: '0',
         priority: DEFAULT_PRIORITY,
         status: DEFAULT_STATUS
       }.merge(attributes || {})

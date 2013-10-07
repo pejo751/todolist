@@ -1,4 +1,14 @@
 Todolist::Application.routes.draw do
+  get "tasks/name:string"
+  get "tasks/programmer:string"
+  get "tasks/project:string"
+  get "tasks/priority:string"
+  get "tasks/notes:text"
+  get "tasks/budget:decimal"
+  get "tasks/start_date:date"
+  get "tasks/due_date:date"
+  get "tasks/progress:integer"
+  get "tasks/status:string"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -151,6 +151,10 @@ describe Task do
       expect(@task.priority).to eq(Task::DEFAULT_PRIORITY)
     end
 
+    it "#budget is setted to 0.00" do
+      expect(@task.budget.to_s).to eq('0.0')
+    end
+
     it "#status is setted with the default value" do
       expect(@task.status).to eq(Task::DEFAULT_STATUS)
     end

@@ -7,7 +7,7 @@ FactoryGirl.define do
     project "MyString"
     # priority "Low"
     notes "MyText"
-    budget "9.99"
+    # budget "9.99"
     # start_date "2013-10-03"
     # due_date "2013-10-03"
     # progress 0

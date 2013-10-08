@@ -37,15 +37,15 @@
   </div>
   <div class="field">
     <%= f.label :start_date %><br>
-    <%= f.date_select :start_date, :include_blank => true, :default => nil %>
+    <%= f.date_select :start_date, include_blank: true, default: nil %>
   </div>
   <div class="field">
     <%= f.label :due_date %><br>
-    <%= f.date_select :due_date, :include_blank => true, :default => nil %>
+    <%= f.date_select :due_date, include_blank: true, default: nil %>
   </div>
   <div class="field">
     <%= f.label :progress, 'Progress (%)' %><br>
-    <%= f.select :progress, options_for_select((0..100).each { |n| n}, @task.progress) %>
+    <%= f.select :progress, options_for_select((0..100).step(10), @task.progress) %>
   </div>
   <div class="field">
     <%= f.label :status %><br>

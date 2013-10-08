@@ -6,7 +6,9 @@ class Task < ActiveRecord::Base
   STATUS_DOMAIN = ['Not started','In progress','Complete']
   DEFAULT_STATUS = STATUS_DOMAIN.first
 
-  validates :name, :programmer, :priority, :progress, presence: true
+  belongs_to :project
+
+  validates :name, :programmer, :project, :priority, :progress, presence: true
   validates :priority, inclusion: PRIORITY_DOMAIN
   validates :budget, numericality: {greater_than_or_equal_to: 0}
   validates :progress,
@@ -14,6 +16,8 @@ class Task < ActiveRecord::Base
   validates :status, inclusion: STATUS_DOMAIN
   validate :due_date_cannot_present_without_start_date
   validate :due_date_cannot_be_before_start_date
+  validate :progress_cannot_be_greater_than_0_no_start_date
+
   before_save :set_status
 
   def initialize(attributes=nil)
@@ -37,6 +41,12 @@ private
   def due_date_cannot_be_before_start_date
     if start_date.present? && due_date.present? && due_date < start_date
       errors.add(:due_date, "can't be before the start date")
+    end
+  end
+
+  def progress_cannot_be_greater_than_0_no_start_date
+    if progress.present? and progress > 0 and not start_date.present?
+      errors.add(:progress, "can't be greater than 0 without start date")
     end
   end
 

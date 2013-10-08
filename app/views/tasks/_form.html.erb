@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :project %><br>
-    <%= f.text_field :project %>
+    <%= f.select :project_id, Project.all.collect {|p| [ p.name, p.id ] }, {include_blank: 'None'} %>
   </div>
   <div class="field">
     <%= f.label :priority %><br>
@@ -37,11 +37,11 @@
   </div>
   <div class="field">
     <%= f.label :start_date %><br>
-    <%= f.date_select :start_date, include_blank: true, default: nil %>
+    <%= f.date_select :start_date, include_blank: true %>
   </div>
   <div class="field">
     <%= f.label :due_date %><br>
-    <%= f.date_select :due_date, include_blank: true, default: nil %>
+    <%= f.date_select :due_date, include_blank: true %>
   </div>
   <div class="field">
     <%= f.label :progress, 'Progress (%)' %><br>

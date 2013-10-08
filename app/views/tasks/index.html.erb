@@ -24,7 +24,7 @@
       <tr>
         <td><%= task.name %></td>
         <td><%= task.programmer %></td>
-        <td><%= task.project %></td>
+        <td><%= task.project ? task.project.name : '*pending' %></td>
         <td><%= task.priority %></td>
         <td><%= task.notes %></td>
         <td><%= task.budget %></td>

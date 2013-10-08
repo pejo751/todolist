@@ -94,14 +94,26 @@ describe Task do
         expect(@task.errors).to have_at_least(1).errors_on(:progress)
       end
 
-      it 'raises an error when is greater than one hundred' do
+      it "raises an error when is greater than 0 and #start_date is empty" do
+        @task.start_date = nil
+        @task.progress = 50
+        @task.save
+        expect(@task.errors).to have_at_least(1).errors_on(:start_date)
+      end
+
+      it 'raises an error when is greater than 100' do
         @task.progress = 101
         @task.valid?
         expect(@task.errors).to have_at_least(1).errors_on(:progress)
       end
+
     end
 
     context 'with #status' do
+      before :each do
+        @task.start_date = Date.today
+      end
+
       it 'requires #status' do
         @task.status = nil
         expect(@task.valid?).to be_false

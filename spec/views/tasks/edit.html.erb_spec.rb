@@ -21,7 +21,7 @@ describe "tasks/edit" do
     assert_select "form[action=?][method=?]", task_path(@task), "post" do
       assert_select "input#task_name[name=?]", "task[name]"
       assert_select "input#task_programmer[name=?]", "task[programmer]"
-      assert_select "input#task_project[name=?]", "task[project]"
+      assert_select "input#task_project_id[name=?]", "task[project_id]"
       assert_select "input#task_priority[name=?]", "task[priority]"
       assert_select "textarea#task_notes[name=?]", "task[notes]"
       assert_select "input#task_budget[name=?]", "task[budget]"

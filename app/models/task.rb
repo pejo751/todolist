@@ -5,13 +5,16 @@ class Task < ActiveRecord::Base
   DEFAULT_PRIORITY = PRIORITY_DOMAIN.first
   STATUS_DOMAIN = ['Not started','Started','Completed']
   DEFAULT_STATUS = STATUS_DOMAIN.first
+  KIND_DOMAIN = ['Back End', 'Front End', 'Testing', 'Estimation']
+  DEFAULT_KIND = KIND_DOMAIN.first
 
   belongs_to :project
 
-  validates :name, :programmer, :project_id, :priority, presence: true
+  validates :name, :programmer, :project_id, :priority,:kind,  presence: true
   validates :priority, inclusion: PRIORITY_DOMAIN
   validates :budget, numericality: {greater_than_or_equal_to: 0}
   validates :status, inclusion: STATUS_DOMAIN
+  validates :kind, inclusion: KIND_DOMAIN
   validate :due_date_cannot_present_without_start_date
   validate :due_date_cannot_be_before_start_date
 
@@ -19,7 +22,8 @@ class Task < ActiveRecord::Base
     attr_with_defaults = {
         budget: '0.0',
         priority: DEFAULT_PRIORITY,
-        status: DEFAULT_STATUS
+        status: DEFAULT_STATUS,
+        kind:  DEFAULT_KIND
       }.merge(attributes || {})
     super(attr_with_defaults)
   end

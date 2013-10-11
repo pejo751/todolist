@@ -29,6 +29,17 @@ describe Task do
       expect(@task.errors).to have_at_least(1).errors_on(:programmer)
     end
 
+    it 'requires #kind' do
+      @task.kind = nil
+      expect(@task.valid?).to be_false
+    end
+
+    it 'raise an error when #kind is empty' do
+      @task.kind = nil
+      @task.valid?
+      expect(@task.errors).to have_at_least(1).errors_on(:programmer)
+    end
+
     context "with invalid #priority" do
       before :each do
         @task.priority = 99
@@ -97,6 +108,10 @@ describe Task do
   end
 
   describe 'behaviours' do
+
+    it "#kind is setted with the default value" do
+      expect(@task.kind).to eq(Task::DEFAULT_KIND)
+    end
 
     it "#priority is setted with the default value" do
       expect(@task.priority).to eq(Task::DEFAULT_PRIORITY)

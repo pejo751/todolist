@@ -20,6 +20,10 @@
     <%= f.text_field :programmer %>
   </div>
   <div class="field">
+    <%= f.label :kind %><br>
+    <%= f.select :kind, options_for_select(Task::KIND_DOMAIN, @task.kind), include_blank: true %>
+  </div>
+  <div class="field">
     <%= f.label :project %><br>
     <%= f.select :project_id, Project.all.collect {|p| [ p.name, p.id ] }, {include_blank: 'None'}, disabled: :true %>
   </div>

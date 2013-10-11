@@ -23,6 +23,6 @@ class TasksController < InheritedResources::Base
   #   # Never trust parameters from the scary internet, only allow the white list through.
   def resource_params
     params.require(:task).permit(:name, :programmer, :priority, :notes,
-      :budget, :start_date, :due_date, :status, :project_id)
+      :budget, :start_date, :due_date, :status, :project_id, :kind)
   end
 end

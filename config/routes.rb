@@ -1,11 +1,10 @@
 Todolist::Application.routes.draw do
-  resources :projects
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'tasks#index'
+  root 'tasks#main'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -14,7 +13,10 @@ Todolist::Application.routes.draw do
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
-  resources :tasks
+
+  resources :projects do
+    resources :tasks
+  end
 
   # Example resource route with options:
   #   resources :products do

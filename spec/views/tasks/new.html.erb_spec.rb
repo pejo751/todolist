@@ -9,7 +9,6 @@ describe "tasks/new" do
       :priority => "MyString",
       :notes => "MyText",
       :budget => "9.99",
-      :progress => 1,
       :status => "MyString"
     ).as_new_record)
   end
@@ -25,7 +24,6 @@ describe "tasks/new" do
       assert_select "input#task_priority[name=?]", "task[priority]"
       assert_select "textarea#task_notes[name=?]", "task[notes]"
       assert_select "input#task_budget[name=?]", "task[budget]"
-      assert_select "input#task_progress[name=?]", "task[progress]"
       assert_select "input#task_status[name=?]", "task[status]"
     end
   end

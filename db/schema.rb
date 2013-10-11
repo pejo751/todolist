@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131008173645) do
+ActiveRecord::Schema.define(version: 20131009172850) do
 
   create_table "projects", force: true do |t|
     t.string   "name"
@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(version: 20131008173645) do
     t.decimal  "budget"
     t.date     "start_date"
     t.date     "due_date"
-    t.integer  "progress"
     t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"

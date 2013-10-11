@@ -9,7 +9,6 @@ describe "tasks/show" do
       :priority => "Priority",
       :notes => "MyText",
       :budget => "9.99",
-      :progress => 1,
       :status => "Status"
     ))
   end

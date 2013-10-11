@@ -1,12 +1,10 @@
-<h1>Listing tasks <%= "\"#{@project.name}\"" %> project</h1>
-
-<p>
-  <%= link_to 'New Task', new_project_task_path %>
-</p>
+<h1>Listing tasks</h1>
 
 <table>
   <thead>
     <tr>
+      <th>Created at</th>
+      <th>Project</th>
       <th>Name</th>
       <th>Programmer</th>
       <th>Priority</th>
@@ -15,15 +13,14 @@
       <th>Start date</th>
       <th>Due date</th>
       <th>Status</th>
-      <th></th>
-      <th></th>
-      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @tasks.each do |task| %>
       <tr>
+        <td><%= task.created_at %></td>
+        <td><%= task.project ? task.project.name : '*pending' %></td>
         <td><%= task.name %></td>
         <td><%= task.programmer %></td>
         <td><%= task.priority %></td>
@@ -32,14 +29,11 @@
         <td><%= task.start_date %></td>
         <td><%= task.due_date %></td>
         <td><%= task.status %></td>
-        <td><%= link_to 'Show', project_task_path(@project, task) %></td>
-        <td><%= link_to 'Edit', edit_project_task_path(@project, task) %></td>
-        <td><%= link_to 'Destroy', [@project, task], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<p>
-  <%= link_to 'Back to Projects', projects_path %>
-</p>
+<br>
+
+<%= link_to 'Projects', projects_path %>

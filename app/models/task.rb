@@ -3,27 +3,21 @@ class Task < ActiveRecord::Base
 
   PRIORITY_DOMAIN = %w(Low Normal High)
   DEFAULT_PRIORITY = PRIORITY_DOMAIN.first
-  STATUS_DOMAIN = ['Not started','In progress','Complete']
+  STATUS_DOMAIN = ['Not started','Started','Completed']
   DEFAULT_STATUS = STATUS_DOMAIN.first
 
   belongs_to :project
 
-  validates :name, :programmer, :project, :priority, :progress, presence: true
+  validates :name, :programmer, :project_id, :priority, presence: true
   validates :priority, inclusion: PRIORITY_DOMAIN
   validates :budget, numericality: {greater_than_or_equal_to: 0}
-  validates :progress,
-    numericality: {greater_than_or_equal_to: 0, less_than_or_equal_to: 100}
   validates :status, inclusion: STATUS_DOMAIN
   validate :due_date_cannot_present_without_start_date
   validate :due_date_cannot_be_before_start_date
-  validate :progress_cannot_be_greater_than_0_no_start_date
-
-  before_save :set_status
 
   def initialize(attributes=nil)
     attr_with_defaults = {
-        budget: '0.00',
-        progress: '0',
+        budget: '0.0',
         priority: DEFAULT_PRIORITY,
         status: DEFAULT_STATUS
       }.merge(attributes || {})
@@ -41,23 +35,6 @@ private
   def due_date_cannot_be_before_start_date
     if start_date.present? && due_date.present? && due_date < start_date
       errors.add(:due_date, "can't be before the start date")
-    end
-  end
-
-  def progress_cannot_be_greater_than_0_no_start_date
-    if progress.present? and progress > 0 and not start_date.present?
-      errors.add(:progress, "can't be greater than 0 without start date")
-    end
-  end
-
-  def set_status
-    self.status = case
-      when progress == 100
-        STATUS_DOMAIN[2]
-      when progress > 0
-        STATUS_DOMAIN[1]
-      else
-        status
     end
   end
 

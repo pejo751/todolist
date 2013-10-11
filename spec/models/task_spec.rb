@@ -76,39 +76,6 @@ describe Task do
       end
     end
 
-    context 'with #progress' do
-      it 'requires #progress' do
-        @task.progress = nil
-        expect(@task.valid?).to be_false
-      end
-
-      it 'raises an error when empty' do
-        @task.progress = nil
-        @task.valid?
-        expect(@task.errors).to have_at_least(1).errors_on(:progress)
-      end
-
-      it 'raises an error when is not numeric' do
-        @task.progress = 'uno'
-        @task.valid?
-        expect(@task.errors).to have_at_least(1).errors_on(:progress)
-      end
-
-      it "raises an error when is greater than 0 and #start_date is empty" do
-        @task.start_date = nil
-        @task.progress = 50
-        @task.save
-        expect(@task.errors).to have_at_least(1).errors_on(:start_date)
-      end
-
-      it 'raises an error when is greater than 100' do
-        @task.progress = 101
-        @task.valid?
-        expect(@task.errors).to have_at_least(1).errors_on(:progress)
-      end
-
-    end
-
     context 'with #status' do
       before :each do
         @task.start_date = Date.today
@@ -125,39 +92,11 @@ describe Task do
         expect(@task.errors).to have_at_least(1).errors_on(:status)
       end
 
-      context 'when #progress equal zero' do
-        it "task status should be not started" do
-          @task.progress = 0
-          @task.save
-          expect(@task.status).to eq(Task::STATUS_DOMAIN.first)
-        end
-      end
-
-      context 'when #progress greater than 0 and less than 100' do
-        it "task status should be in progress" do
-          @task.progress = 50
-          @task.save
-          expect(@task.status).to eq(Task::STATUS_DOMAIN[1])
-        end
-      end
-
-      context 'when #progress equal 100' do
-        it "task status should be completed" do
-          @task.progress = 100
-          @task.save
-          expect(@task.status).to eq(Task::STATUS_DOMAIN[2])
-        end
-      end
-
     end
 
   end
 
   describe 'behaviours' do
-
-    it "#progress is setted to 0" do
-      expect(@task.progress).to eq(0)
-    end
 
     it "#priority is setted with the default value" do
       expect(@task.priority).to eq(Task::DEFAULT_PRIORITY)

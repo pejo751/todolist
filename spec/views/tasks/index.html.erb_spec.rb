@@ -10,7 +10,6 @@ describe "tasks/index" do
         :priority => "Priority",
         :notes => "MyText",
         :budget => "9.99",
-        :progress => 1,
         :status => "Status"
       ),
       stub_model(Task,
@@ -20,7 +19,6 @@ describe "tasks/index" do
         :priority => "Priority",
         :notes => "MyText",
         :budget => "9.99",
-        :progress => 1,
         :status => "Status"
       )
     ])

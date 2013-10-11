@@ -27,6 +27,7 @@ Test
 
 Database Population
 ------------------------------------------------------------------------
+rake db:populate
 
 
 Testing

@@ -1,4 +1,4 @@
-<h1>Listing tasks <%= "\"#{@project.name}\"" %> project</h1>
+<h1>Listing tasks <%= @project.to_s %> project</h1>
 
 <p>
   <%= link_to 'New Task', new_project_task_path %>

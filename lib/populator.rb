@@ -1,14 +1,13 @@
 require 'faker'
 
 module Populator
-
   def populate_projects!
     Project.destroy_all
-    [2,3].sample.times do
+    [2, 3].sample.times do
       p = Project.create(
         name: Faker::Company::name,
         description: Faker::Lorem.paragraphs.join("\n")
-        )
+      )
       p.save!
     end
   end
@@ -17,7 +16,7 @@ module Populator
     Task.destroy_all
     populate_projects! if Project.count(:id) == 0
     Project.all.each do |project|
-      [7,8,9].sample.times do
+      [7, 8, 9].sample.times do
         t            = project.tasks.build
         t.name       = Faker::Company::name
         t.programmer = Faker::Name::name
@@ -32,5 +31,4 @@ module Populator
       end
     end
   end
-
 end

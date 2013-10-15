@@ -1,10 +1,10 @@
-<%= form_for([@project, @task]) do |f| %>
-  <% if @task.errors.any? %>
+<%= form_for([project, task]) do |f| %>
+  <% if task.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
 
       <ul>
-      <% @task.errors.full_messages.each do |msg| %>
+      <% task.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :kind %><br>
-    <%= f.select :kind, options_for_select(Task::KIND_DOMAIN, @task.kind), include_blank: true %>
+    <%= f.select :kind, options_for_select(Task::KIND_DOMAIN, task.kind), include_blank: true %>
   </div>
   <div class="field">
     <%= f.label :project %><br>
@@ -29,7 +29,7 @@
   </div>
   <div class="field">
     <%= f.label :priority %><br>
-    <%= f.select :priority, options_for_select(Task::PRIORITY_DOMAIN, @task.priority) %>
+    <%= f.select :priority, options_for_select(Task::PRIORITY_DOMAIN, task.priority) %>
   </div>
   <div class="field">
     <%= f.label :notes %><br>
@@ -49,7 +49,7 @@
   </div>
   <div class="field">
     <%= f.label :status %><br>
-    <%= f.select :status, options_for_select(Task::STATUS_DOMAIN, @task.status) %>
+    <%= f.select :status, options_for_select(Task::STATUS_DOMAIN, task.status) %>
   </div>
   <div class="actions">
     <%= f.submit %>

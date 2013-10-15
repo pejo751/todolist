@@ -1,4 +1,5 @@
 class CreateTasks < ActiveRecord::Migration
+
   def change
     create_table :tasks do |t|
       t.string :name
@@ -15,4 +16,5 @@ class CreateTasks < ActiveRecord::Migration
       t.timestamps
     end
   end
+
 end

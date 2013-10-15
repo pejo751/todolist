@@ -37,6 +37,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'inherited_resources'
   gem 'faker'
+  gem "rails_best_practices"
 end
 
 # Use ActiveModel has_secure_password

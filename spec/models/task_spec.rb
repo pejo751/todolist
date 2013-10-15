@@ -103,6 +103,12 @@ describe Task do
         expect(@task.errors).to have_at_least(1).errors_on(:status)
       end
 
+      it 'raises an error when value is default and present #start_date' do
+        @task.status = Task::DEFAULT_STATUS
+        @task.valid?
+        expect(@task.errors).to have_at_least(1).errors_on(:status)
+      end
+
     end
 
   end
@@ -124,7 +130,5 @@ describe Task do
     it "#status is setted with the default value" do
       expect(@task.status).to eq(Task::DEFAULT_STATUS)
     end
-
   end
-
 end

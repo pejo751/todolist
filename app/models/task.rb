@@ -1,4 +1,3 @@
-
 class Task < ActiveRecord::Base
 
   PRIORITY_DOMAIN = %w(Low Normal High)
@@ -9,6 +8,7 @@ class Task < ActiveRecord::Base
   DEFAULT_KIND = KIND_DOMAIN.first
 
   belongs_to :project
+  delegate :name, :to => :project, :prefix => true
 
   validates :name, :programmer, :project_id, :priority,:kind,  presence: true
   validates :priority, inclusion: PRIORITY_DOMAIN
@@ -17,21 +17,26 @@ class Task < ActiveRecord::Base
   validates :kind, inclusion: KIND_DOMAIN
   validate :due_date_cannot_present_without_start_date
   validate :due_date_cannot_be_before_start_date
+  validate :status_cannot_have_default_value_when_present_start_date
 
-  def initialize(attributes=nil)
+  def initialize(attributes = nil)
     attr_with_defaults = {
-        budget: '0.0',
-        priority: DEFAULT_PRIORITY,
-        status: DEFAULT_STATUS,
-        kind:  DEFAULT_KIND
-      }.merge(attributes || {})
+      budget: '0.0',
+      priority: DEFAULT_PRIORITY,
+      status: DEFAULT_STATUS,
+      kind:  DEFAULT_KIND
+    }.merge(attributes || {})
     super(attr_with_defaults)
   end
 
-private
+  def to_s
+    "\"#{@name}\""
+  end
+
+  private
 
   def due_date_cannot_present_without_start_date
-    if due_date.present? and not start_date.present?
+    if due_date.present? && !start_date.present?
       errors.add(:due_date, "can't present without start date")
     end
   end
@@ -42,4 +47,9 @@ private
     end
   end
 
+  def status_cannot_have_default_value_when_present_start_date
+    if status == DEFAULT_STATUS && start_date.present?
+      errors.add(:status, "can't have default value when present start date")
+    end
+  end
 end

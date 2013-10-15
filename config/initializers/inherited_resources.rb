@@ -1,7 +1,9 @@
 module InheritedResources
 
   module BaseHelpers
+
     protected
+
     def build_resource
       get_resource_ivar || set_resource_ivar(end_of_association_chain.send(method_for_build, request.get? ? {} : resource_params))
     end

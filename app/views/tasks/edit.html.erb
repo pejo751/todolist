@@ -1,6 +1,6 @@
 <h1>Editing <%= "\"#{@project.name}\" project" %> task</h1>
 
-<%= render 'form' %>
+<%= render 'form', project: @project, task: @task %>
 
 <%= link_to 'Show', [@project, @task] %> |
 <%= link_to 'Back', project_tasks_path %>

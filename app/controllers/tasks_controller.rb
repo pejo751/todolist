@@ -1,9 +1,5 @@
 class TasksController < InheritedResources::Base
 
-  respond_to :html, :xml, :json
-
-  actions :all
-
   belongs_to :project
 
   def create
@@ -20,9 +16,11 @@ class TasksController < InheritedResources::Base
 
   private
 
-  #   # Never trust parameters from the scary internet, only allow the white list through.
+  # Never trust parameters from the scary internet, only allow the white list through.
   def resource_params
-    params.require(:task).permit(:name, :programmer, :priority, :notes,
-      :budget, :start_date, :due_date, :status, :project_id, :kind)
+    params.require(:task).permit(
+      :name, :programmer, :priority, :notes, :budget, :start_date, :due_date,
+      :status, :project_id, :kind
+    )
   end
 end

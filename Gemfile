@@ -38,6 +38,7 @@ group :development, :test do
   gem 'inherited_resources'
   gem 'faker'
   gem "rails_best_practices"
+  gem 'simplecov', require: false
 end
 
 # Use ActiveModel has_secure_password

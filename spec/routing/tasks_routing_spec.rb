@@ -12,11 +12,11 @@ describe TasksController do
     end
 
     it "routes to #show" do
-      get("/tasks/1").should route_to("tasks#show", :id => "1")
+      get("/tasks/1").should route_to("tasks#show", id: "1")
     end
 
     it "routes to #edit" do
-      get("/tasks/1/edit").should route_to("tasks#edit", :id => "1")
+      get("/tasks/1/edit").should route_to("tasks#edit", id: "1")
     end
 
     it "routes to #create" do
@@ -24,11 +24,11 @@ describe TasksController do
     end
 
     it "routes to #update" do
-      put("/tasks/1").should route_to("tasks#update", :id => "1")
+      put("/tasks/1").should route_to("tasks#update", id: "1")
     end
 
     it "routes to #destroy" do
-      delete("/tasks/1").should route_to("tasks#destroy", :id => "1")
+      delete("/tasks/1").should route_to("tasks#destroy", id: "1")
     end
 
   end

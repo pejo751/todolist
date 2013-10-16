@@ -109,8 +109,17 @@ describe Task do
         expect(@task.errors).to have_at_least(1).errors_on(:status)
       end
 
+      it 'raises an error when is not default value and not present #start_date' do
+        @task.status = Task::STATUS_DOMAIN[1]
+        @task.start_date = nil
+        @task.valid?
+        expect(@task.errors).to have_at_least(1).errors_on(:status)
+      end
     end
 
+    it 'verify instance method #to_s' do
+        expect(@task.to_s).to eq("\"#{@task.name}\"")
+    end
   end
 
   describe 'behaviours' do

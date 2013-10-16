@@ -42,7 +42,7 @@ describe TasksController do
 
   describe "GET show" do
     it "assigns the requested task as @task" do
-      get :show, { project_id: project.id, :id => task.to_param }, valid_session
+      get :show, { project_id: project.id, id: task.to_param }, valid_session
       assigns(:task).should eq(task)
     end
   end
@@ -66,12 +66,12 @@ describe TasksController do
     describe "with valid params" do
       it "creates a new Task" do
         expect {
-          post :create, { project_id: project.id, :task => valid_attributes }, valid_session
+          post :create, { project_id: project.id, task: valid_attributes }, valid_session
         }.to change(Task, :count).by(1)
       end
 
       it "assigns a newly created task as @task" do
-        post :create, { project_id: project.id, :task => valid_attributes }, valid_session
+        post :create, { project_id: project.id, task: valid_attributes }, valid_session
         assigns(:task).should be_a(Task)
         assigns(:task).should be_persisted
       end
@@ -86,14 +86,14 @@ describe TasksController do
       it "assigns a newly created but unsaved task as @task" do
         # Trigger the behavior that occurs when invalid params are submitted
         Task.any_instance.stub(:save).and_return(false)
-        post :create, { project_id: project.id, task: { "name" => "" } }, valid_session
+        post :create, { project_id: project.id, task: { name: "" } }, valid_session
         assigns(:task).should be_a_new(Task)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Task.any_instance.stub(:save).and_return(false)
-        post :create, { project_id: project.id, task: { "otro" => "" } }, valid_session
+        post :create, { project_id: project.id, task: { otro: "" } }, valid_session
         response.should render_template(:new)
       end
     end
@@ -107,7 +107,7 @@ describe TasksController do
         # specifies that the Task created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Task.any_instance.should_receive(:update).with({ "name" => "MyString" })
+        Task.any_instance.should_receive(:update).with({ name: "MyString" })
         # Task.any_instance.should_receive(:update).with(valid_attributes)
         # put :update, {project_id: @project.id, :id => task.to_param, :task => { "name" => "MyString" }}, valid_session
         # put :update, { project_id: project.id, id: task.to_param }, { :task => valid_attributes }, valid_session
@@ -115,12 +115,12 @@ describe TasksController do
       end
 
       it "assigns the requested task as @task" do
-        put :update, { project_id: project.id, id: task.to_param }, { :task => valid_attributes }, valid_session
+        put :update, { project_id: project.id, id: task.to_param }, { task: valid_attributes }, valid_session
         assigns(:task).should eq(task)
       end
 
       it "redirects to the task" do
-        put :update, { project_id: project.id, id: task.to_param }, { :task => valid_attributes }, valid_session
+        put :update, { project_id: project.id, id: task.to_param }, { task: valid_attributes }, valid_session
         response.should redirect_to(project_task_path)
       end
     end
@@ -129,7 +129,7 @@ describe TasksController do
       it "assigns the task as @task" do
         # Trigger the behavior that occurs when invalid params are submitted
         Task.any_instance.stub(:save).and_return(false)
-        put :update, { project_id: project.id, id: task.to_param }, { task: { "name" => "invalid value" } }, valid_session
+        put :update, { project_id: project.id, id: task.to_param }, { task: { name: "invalid value" } }, valid_session
         # put :update, project_id: project.id, id: task.to_param
         assigns(:task).should eq(task)
       end
@@ -137,7 +137,7 @@ describe TasksController do
       it "re-renders the 'edit' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Task.any_instance.stub(:save).and_return(false)
-        put :update, { project_id: project.id, id: task.to_param }, { :task => { "name" => "invalid value" } }, valid_session
+        put :update, { project_id: project.id, id: task.to_param }, { task: { name: "invalid value" } }, valid_session
         response.should render_template("edit")
       end
     end

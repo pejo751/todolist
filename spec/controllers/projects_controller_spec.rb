@@ -84,14 +84,14 @@ describe ProjectsController do
       it "assigns a newly created but unsaved project as @project" do
         # Trigger the behavior that occurs when invalid params are submitted
         Project.any_instance.stub(:save).and_return(false)
-        post :create, { project: { "name" => "invalid value" } }, valid_session
+        post :create, { project: { name: "invalid value" } }, valid_session
         assigns(:project).should be_a_new(Project)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Project.any_instance.stub(:save).and_return(false)
-        post :create, {:project => { "name" => "invalid value" } }, valid_session
+        post :create, { project: { name: "invalid value" } }, valid_session
         response.should render_template("new")
       end
     end
@@ -104,8 +104,8 @@ describe ProjectsController do
         # specifies that the Project created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Project.any_instance.should_receive(:update).with({ "name" => "MyString" })
-        put :update, { id: project.to_param, project: { "name" => "MyString" } }, valid_session
+        Project.any_instance.should_receive(:update).with({ name: "MyString" })
+        put :update, { id: project.to_param, project: { name: "MyString" } }, valid_session
       end
 
       it "assigns the requested project as @project" do
@@ -123,14 +123,14 @@ describe ProjectsController do
       it "assigns the project as @project" do
         # Trigger the behavior that occurs when invalid params are submitted
         Project.any_instance.stub(:save).and_return(false)
-        put :update, { id: project.to_param, project: { "name" => "" } }, valid_session
+        put :update, { id: project.to_param, project: { name: "" } }, valid_session
         assigns(:project).should eq(project)
       end
 
       it "re-renders the 'edit' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Project.any_instance.stub(:save).and_return(false)
-        put :update, { id: project.to_param, project: { "name" => "" } }, valid_session
+        put :update, { id: project.to_param, project: { name: "" } }, valid_session
         response.should render_template("edit")
       end
     end

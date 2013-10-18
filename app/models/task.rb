@@ -50,7 +50,8 @@ class Task < ActiveRecord::Base
 
   def status_cannot_have_default_value_when_present_start_date
     if status == DEFAULT_STATUS && start_date.present?
-      errors.add(:status, "can't have \"#{DEFAULT_STATUS}\" when present start date")
+      errors.add(:status,
+        "can't have \"#{DEFAULT_STATUS}\" when present start date")
     end
   end
 

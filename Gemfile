@@ -35,11 +35,14 @@ end
 group :development, :test do
   gem "rspec-rails"
   gem 'factory_girl_rails'
-  gem 'inherited_resources'
   gem 'faker'
   gem "rails_best_practices"
   gem 'simplecov', require: false
 end
+
+gem 'inherited_resources'
+
+gem "bootstrap-sass", "~> 2.3.2.2"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

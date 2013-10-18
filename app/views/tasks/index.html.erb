@@ -4,7 +4,7 @@
   <%= link_to 'New Task', new_project_task_path %>
 </p>
 
-<table>
+<table class='table'>
   <thead>
     <tr>
       <th>Name</th>
@@ -29,18 +29,23 @@
         <td><%= task.programmer %></td>
         <td><%= task.kind %></td>
         <td><%= task.priority %></td>
-        <td><%= task.notes %></td>
+        <td><%= !task.notes.empty? ? "#{task.notes[0..30].rstrip}..." : '' %></td>
         <td><%= task.budget %></td>
         <td><%= task.start_date %></td>
         <td><%= task.due_date %></td>
         <td><%= task.status %></td>
-        <td><%= link_to 'Show', project_task_path(@project, task) %></td>
-        <td><%= link_to 'Edit', edit_project_task_path(@project, task) %></td>
-        <td><%= link_to 'Destroy', [@project, task], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= button_to 'Show', project_task_path(@project, task),
+          method: :get, class: "btn-success" %></td>
+        <td><%= button_to 'Edit', edit_project_task_path(@project, task),
+          method: :get, class: "btn-warning" %></td>
+        <td><%= button_to 'Destroy', [@project, task], method: :delete,
+          data: { confirm: 'Are you sure?' }, class: "btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<br>
 
 <p>
   <%= link_to 'Back to Projects', projects_path %>

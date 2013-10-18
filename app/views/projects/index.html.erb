@@ -4,7 +4,7 @@
   <%= link_to 'New Project', new_project_path %>
 </p>
 
-<table>
+<table class='table'>
   <thead>
     <tr>
       <th>Name</th>
@@ -21,14 +21,20 @@
       <tr>
         <td><%= project.name %></td>
         <td><%= project.description %></td>
-        <td><%= link_to 'Show', project %></td>
-        <td><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Tasks', project_tasks_path(project) %></td>
+        <td><%= button_to 'Show', project, method: :get,
+          class: "btn-success" %></td>
+        <td><%= button_to 'Edit', edit_project_path(project),
+          method: :get, class: "btn-warning" %></td>
+        <td><%= button_to 'Destroy', project, method: :delete,
+          data: { confirm: 'Are you sure?' }, class: "btn-danger" %></td>
+        <td><%= button_to 'Tasks', project_tasks_path(project), method: :get,
+          class: "btn-default" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<br>
 
 <p>
   <%= link_to 'Back to Home', root_path %>

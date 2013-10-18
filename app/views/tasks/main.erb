@@ -4,7 +4,7 @@
   <%= link_to 'Projects', projects_path %>
 </p>
 
-<table>
+<table class='table'>
   <thead>
     <tr>
       <th>Created at</th>
@@ -30,7 +30,7 @@
         <td><%= task.programmer %></td>
         <td><%= task.kind %></td>
         <td><%= task.priority %></td>
-        <td><%= task.notes %></td>
+        <td><%= !task.notes.empty? ? "#{task.notes[0..30].rstrip}..." : '' %></td>
         <td><%= task.budget %></td>
         <td><%= task.start_date %></td>
         <td><%= task.due_date %></td>

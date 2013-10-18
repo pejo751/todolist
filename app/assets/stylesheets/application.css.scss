@@ -11,3 +11,37 @@
  *= require_self
  *= require_tree .
  */
+@import "bootstrap";
+
+.container a {
+  text-decoration: none;
+}
+
+.navbar {
+  background-color: #f8f8f8;
+  border-color: #e7e7e7;
+}
+
+.navbar-toggle {
+    display: none;
+  }
+
+.navbar-header {
+  padding: 10px;
+  float: left;
+}
+
+.main {
+  padding: 30px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  background-color: #eeeeee;
+  border-radius: 6px;
+}
+
+.field_with_errors {
+  @extend .control-group.error;
+  display:inline;
+  margin:0px;
+  padding:0px;
+}

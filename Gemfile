@@ -44,6 +44,8 @@ gem 'inherited_resources'
 
 gem "bootstrap-sass", "~> 2.3.2.2"
 
+gem "slim", "~> 2.0.1"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

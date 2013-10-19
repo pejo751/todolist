@@ -1,0 +1,46 @@
+p id="notice"
+  = notice
+
+p
+  strong Name: 
+  = @task.name
+
+p
+  strong Programmer: 
+  = @task.programmer
+
+p
+  strong Kind: 
+  = @task.kind
+
+p
+  strong Project: 
+  = @task.project_name
+
+p
+  strong Priority: 
+  = @task.priority
+
+p
+  strong Notes: 
+  = @task.notes
+
+p
+  strong Budget: 
+  = @task.budget
+
+p
+  strong Start date: 
+  = @task.start_date
+
+p
+  strong Due date: 
+  = @task.due_date
+
+p
+  strong Status: 
+  = @task.status
+
+= link_to 'Edit', edit_project_task_path(@project, @task)
+= ' | '
+= link_to 'Back', project_tasks_path

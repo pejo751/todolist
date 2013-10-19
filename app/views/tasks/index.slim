@@ -1,0 +1,40 @@
+h1 = "Listing tasks #{@project.to_s} project"
+
+p = link_to 'New Task', new_project_task_path
+
+table class='table'
+  thead
+    tr>
+      th Name
+      th Programmer
+      th Kind
+      th Priority
+      th Notes
+      th Budget
+      th Start date
+      th Due date
+      th Status
+      th
+      th
+      th
+
+  tbody
+    - @tasks.each do |task|
+      tr
+        td = task.name
+        td = task.programmer
+        td = task.kind
+        td = task.priority
+        td = !task.notes.empty? ? "#{task.notes[0..30].rstrip}..." : ''
+        td = task.budget
+        td = task.start_date
+        td = task.due_date
+        td = task.status
+        td = button_to 'Show', project_task_path(@project, task),
+          method: :get, class: "btn-success"
+        td = button_to 'Edit', edit_project_task_path(@project, task),
+          method: :get, class: "btn-warning"
+        td = button_to 'Destroy', [@project, task], method: :delete,
+          data: { confirm: 'Are you sure?' }, class: "btn-danger"
+
+p = link_to 'Back to Projects', projects_path

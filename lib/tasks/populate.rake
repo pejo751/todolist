@@ -2,17 +2,13 @@ namespace :db do
 
   desc "TODO"
   task populate: :environment do
-    require 'populator'  #lib/populator.rb
-    include Populator    # modulo en populator.rb
+    require 'populator'
 
     puts "** Hello! Will populate your DB now, please hold."
+    populator = Populator.new
 
-    puts "** => Populating Projects"
-    populate_projects!
-    puts "** => Done!"
-
-    puts "** => Populating Tasks"
-    populate_tasks!
+    puts "** => Populating site"
+    populator.populate_site!
     puts "** => Done!"
   end
 

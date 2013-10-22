@@ -13,12 +13,12 @@ table class='table'
       th Priority
       th Notes
       th Budget
-      th Start date
-      th Due date
+      th Started on
+      th Expired on
       th Status
 
   tbody
-    - @tasks.each do |task|
+    - tasks.each do |task|
       tr
         td = task.created_at
         td = task.project_name
@@ -28,6 +28,6 @@ table class='table'
         td = task.priority
         td = !task.notes.empty? ? "#{task.notes[0..30].rstrip}..." : ''
         td = task.budget
-        td = task.start_date
-        td = task.due_date
+        td = task.started_on
+        td = task.expired_on
         td = task.status

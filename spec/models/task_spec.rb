@@ -3,141 +3,47 @@ require 'spec_helper'
 describe Task do
 
   before :each do
-    @task = FactoryGirl.build(:task)
+    FactoryGirl.create(:task)
   end
 
-  describe "validations" do
-    it 'requires #name' do
-      @task.name = nil
-      expect(@task.valid?).to be_false
-    end
-
-    it 'raises an error when #name is empty' do
-      @task.name = nil
-      @task.valid?
-      expect(@task.errors).to have_at_least(1).errors_on(:name)
-    end
-
-    it 'requires #programmer' do
-      @task.programmer = nil
-      expect(@task.valid?).to be_false
-    end
-
-    it 'raise an error when #programmer is empty' do
-      @task.programmer = nil
-      @task.valid?
-      expect(@task.errors).to have_at_least(1).errors_on(:programmer)
-    end
-
-    it 'requires #kind' do
-      @task.kind = nil
-      expect(@task.valid?).to be_false
-    end
-
-    it 'raise an error when #kind is empty' do
-      @task.kind = nil
-      @task.valid?
-      expect(@task.errors).to have_at_least(1).errors_on(:programmer)
-    end
-
-    context "with invalid #priority" do
-      before :each do
-        @task.priority = 99
-      end
-
-      it 'returns a invalid record' do
-        expect(@task.valid?).to be_false
-      end
-
-      it 'raises an error for #priority' do
-        @task.valid?
-        expect(@task.errors).to have_at_least(1).errors_on(:priority)
-      end
-    end
-
-    context 'when #budget is not empty' do
-      it 'raises an error when #budget is not numeric' do
-        @task.budget = 'uno'
-        @task.valid?
-        expect(@task.errors).to have_at_least(1).errors_on(:budget)
-      end
-
-      it 'raises an error when #budget is less than zero' do
-        @task.budget = -1
-        @task.valid?
-        expect(@task.errors).to have_at_least(1).errors_on(:budget)
-      end
-    end
-
-    context 'when #due_date is not empty' do
-      before :each do
-        @task.due_date = Date.today
-      end
-
-      it 'raises an error when #start_date is empty' do
-        @task.start_date = nil
-        @task.valid?
-        expect(@task.errors).to have_at_least(1).errors_on(:due_date)
-      end
-
-      it 'raises an error when #due_date is before #start_date' do
-        @task.start_date = @task.due_date + 1
-        @task.valid?
-        expect(@task.errors).to have_at_least(1).errors_on(:due_date)
-      end
-    end
-
-    context 'with #status' do
-      before :each do
-        @task.start_date = Date.today
-      end
-
-      it 'requires #status' do
-        @task.status = nil
-        expect(@task.valid?).to be_false
-      end
-
-      it 'raises an error when empty' do
-        @task.status = nil
-        @task.valid?
-        expect(@task.errors).to have_at_least(1).errors_on(:status)
-      end
-
-      it 'raises an error when value is default and present #start_date' do
-        @task.status = Task::DEFAULT_STATUS
-        @task.valid?
-        expect(@task.errors).to have_at_least(1).errors_on(:status)
-      end
-
-      it 'raises an error when is not default value and not present #start_date' do
-        @task.status = Task::STATUS_DOMAIN[1]
-        @task.start_date = nil
-        @task.valid?
-        expect(@task.errors).to have_at_least(1).errors_on(:status)
-      end
-    end
-
-    it 'verify instance method #to_s' do
-        expect(@task.to_s).to eq("\"#{@task.name}\"")
-    end
+  describe "attributes" do
+    it { should have_db_column(:notes).of_type(:text) }
+    it { should have_db_column(:name).of_type(:string) }
+    it { should have_db_column(:programmer).of_type(:string) }
+    it { should have_db_column(:priority).of_type(:string) }
+    it { should have_db_column(:status).of_type(:string) }
+    it { should have_db_column(:kind).of_type(:string) }
+    it { should have_db_column(:started_on).of_type(:date) }
+    it { should have_db_column(:expired_on).of_type(:date) }
+    it { should have_db_column(:project_id).of_type(:integer) }
+    it { should have_db_column(:budget).of_type(:decimal) }
+    it { should_not allow_value(-1).for(:budget) }
   end
 
-  describe 'behaviours' do
+  context "associations" do
+    it { should belong_to(:project) }
+  end
 
-    it "#kind is setted with the default value" do
-      expect(@task.kind).to eq(Task::DEFAULT_KIND)
-    end
-
-    it "#priority is setted with the default value" do
-      expect(@task.priority).to eq(Task::DEFAULT_PRIORITY)
-    end
-
-    it "#budget is setted to 0.00" do
-      expect(@task.budget.to_s).to eq('0.0')
-    end
-
-    it "#status is setted with the default value" do
-      expect(@task.status).to eq(Task::DEFAULT_STATUS)
-    end
+  context "validations" do
+    it { should validate_presence_of(:name) }
+    it { should validate_presence_of(:programmer) }
+    it { should validate_presence_of(:kind) }
+    it {
+      should ensure_inclusion_of(:kind).in_array(
+        ['Back End', 'Front End', 'Testing', 'Estimation'])
+    }
+    it { should validate_presence_of(:priority) }
+    it {
+      should ensure_inclusion_of(:priority).in_array(
+        ['Low', 'Normal', 'High'])
+    }
+    it { should validate_numericality_of(
+      :budget).is_greater_than_or_equal_to(0.0)
+    }
+    it { should validate_presence_of(:status) }
+    it {
+      should ensure_inclusion_of(:status).in_array(
+        ['Not started','Started','Completed'])
+    }
   end
 end

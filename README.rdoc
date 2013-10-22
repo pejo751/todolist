@@ -2,12 +2,20 @@
 TO-DO list
 
 
+Tasks pending
+------------------------------------------------------------------------
+  Implementar la lógica de status del task con un state machine
+  https://github.com/soveran/micromachine
+  Ver con Dario la implementación en Stories del workflow de publication
+  de un story
+
 Dependencies
 ------------------------------------------------------------------------
   Ruby 2.0.0-p195
   Bundler 1.3.5
   Rails 4.0.0
   factory girl rails 4.2.1
+
 
 Bootstrap
 ------------------------------------------------------------------------

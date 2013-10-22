@@ -1,36 +1,33 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 FactoryGirl.define do
 
-  factory :task do
-    name "MyString"
-    programmer "MyString"
-    # priority "Low"
-    notes "MyText"
-    # budget "9.99"
-    # start_date "2013-10-03"
-    # due_date "2013-10-03"
-    # status "Not started"
-    # project {|project| project.association(:project, :name => 'Writely') }
-    project
-    # project FactoryGirl.build(:project)
-    # project {|project| project.association(:project, FactoryGirl.build(:project)) }
-  end
-
   factory :project do
-    name "MyString"
-    description "MyText"
+    sequence(:name) { |n| "Project ##{n}" }
+    description     "some project description"
+
+    trait :with_tasks do
+      after(:create) do
+        FactoryGirl.create_list(:task, (1..5).to_a.sample, project: project)
+      end
+    end
   end
 
-  factory :project_with_tasks, class: Project do
-    name "MyString"
-    description "MyText"
+  factory :task do
+    project
 
-    ignore do
-      tasks_count 5
+    sequence(:name)       {|n| "Task ##{n}" }
+    sequence(:programmer) {|n| "Programmer ##{n}" }
+    notes                 "Some notes"
+    status                "Not started"
+
+    trait :started do
+      status              "Started"
+      started_on          { 3.days.ago }
     end
 
-    after(:create) do |project, evaluator|
-      FactoryGirl.create_list(:task, evaluator.tasks_count, project: project)
+    trait :completed do
+      status              "Completed"
+      expired_on          { Time.now }
     end
   end
 end

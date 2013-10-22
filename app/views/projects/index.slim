@@ -17,10 +17,13 @@ table class='table'
       tr
         td = project.name
         td = project.description
-        td = button_to 'Show', project, method: :get, class: "btn-success"
-        td = button_to 'Edit', edit_project_path(project), method: :get, class: "btn-warning"
+        td = button_to 'Show', project, method: :get,
+          class: "btn-success btn-mini"
+        td = button_to 'Edit', edit_project_path(project), method: :get,
+          class: "btn-warning btn-mini"
         td = button_to 'Destroy', project, method: :delete,
-          data: { confirm: 'Are you sure?' }, class: "btn-danger"
-        td = button_to 'Tasks', project_tasks_path(project), method: :get, class: "btn-default"
+          data: { confirm: 'Are you sure?' }, class: "btn-danger btn-mini"
+        td = button_to 'Tasks', project_tasks_path(project), method: :get,
+          class: "btn-default btn-mini"
 
 p = link_to 'Back to Home', root_path

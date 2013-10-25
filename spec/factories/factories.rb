@@ -18,16 +18,20 @@ FactoryGirl.define do
     sequence(:name)       {|n| "Task ##{n}" }
     sequence(:programmer) {|n| "Programmer ##{n}" }
     notes                 "Some notes"
-    status                "Not started"
+    state                 "not_started"
 
     trait :started do
-      status              "Started"
+      state               "started"
       started_on          { 3.days.ago }
     end
 
     trait :completed do
-      status              "Completed"
-      expired_on          { Time.now }
+      state               "completed"
+      completed_on        { Time.now }
+    end
+
+    trait :not_started do
+      state               "not_started"
     end
   end
 end

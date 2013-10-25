@@ -1,12 +1,8 @@
 class ProjectsController < InheritedResources::Base
 
-  private
+private
 
   def permitted_params
-      params.permit(
-        project: [
-          :name, :description
-        ]
-      )
+      params.permit(project: [:name, :description])
   end
 end

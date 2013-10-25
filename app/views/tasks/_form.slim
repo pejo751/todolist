@@ -26,13 +26,6 @@ div class="form"
         include_blank: true
 
     div class="field"
-      = f.label :project, class: "label"
-      br
-      = f.select :project_id,
-        Project.all.collect {|p| [ p.name, p.id ] }, {include_blank: 'None'},
-          disabled: :true
-
-    div class="field"
       = f.label :priority, class: "label"
       br
       = f.select :priority,
@@ -47,21 +40,6 @@ div class="form"
       = f.label :budget, class: "label"
       br
       = f.text_field :budget
-
-    div class="field"
-      = f.label :started_on, class: "label"
-      br
-      = f.date_select :started_on, include_blank: true
-
-    div class="field"
-      = f.label :expired_on, class: "label"
-      br
-      = f.date_select :expired_on, include_blank: true
-
-    div class="field"
-      = f.label :status, class: "label"
-      br
-      = f.select :status, options_for_select(Task::STATUSES, task.status)
 
     div class="actions"
       = f.submit class: "btn-primary"

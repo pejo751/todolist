@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131021183407) do
+ActiveRecord::Schema.define(version: 20131025133803) do
 
   create_table "projects", force: true do |t|
     t.string   "name"
@@ -27,8 +27,8 @@ ActiveRecord::Schema.define(version: 20131021183407) do
     t.text     "notes"
     t.decimal  "budget"
     t.date     "started_on"
-    t.date     "expired_on"
-    t.string   "status"
+    t.date     "completed_on"
+    t.string   "state"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "project_id"

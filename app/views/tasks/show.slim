@@ -34,12 +34,12 @@ p
   = @task.started_on
 
 p
-  strong Expired on: 
-  = @task.expired_on
+  strong Completed on: 
+  = @task.completed_on
 
 p
-  strong Status: 
-  = @task.status
+  strong State: 
+  = @task.state
 
 = link_to 'Edit', edit_project_task_path(@project, @task)
 = ' | '

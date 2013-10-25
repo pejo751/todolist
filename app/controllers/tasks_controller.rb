@@ -10,13 +10,12 @@ class TasksController < InheritedResources::Base
     update! { collection_url }
   end
 
-  private
+private
 
   def permitted_params
       params.permit(
         task: [
-          :name, :programmer, :priority, :notes, :budget,
-          :started_on, :expired_on, :status, :project_id, :kind
+          :name, :programmer, :priority, :notes, :budget, :kind
         ]
       )
   end

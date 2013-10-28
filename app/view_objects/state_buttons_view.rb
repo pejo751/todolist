@@ -19,18 +19,21 @@ class StateButtonsView
 protected
 
   def not_start_button
-    link_to 'Not_started',
-      stage_change_path(@project.id, @task.id, :not_started), method: :put
+    link_to 'Not start',
+      stage_change_path(@project.id, @task.id, :not_started), method: :put,
+        class: "btn btn-mini btn-primary"
   end
 
   def start_button
-    link_to 'Started',
-      stage_change_path(@project.id, @task.id, :started), method: :put
+    link_to 'Start',
+      stage_change_path(@project.id, @task.id, :started), method: :put,
+        class: "btn btn-mini btn-primary"
   end
 
   def complete_button
-    link_to 'Completed',
-      stage_change_path(@project.id, @task.id, :completed), method: :put
+    link_to 'Complete',
+      stage_change_path(@project.id, @task.id, :completed), method: :put,
+        class: "btn btn-mini btn-primary"
   end
 
   def br

@@ -25,7 +25,7 @@ table class='table'
         td = task.priority
         td = !task.notes.empty? ? "#{task.notes[0..30].rstrip}..." : ''
         td = task.budget
-        td = TasksHelper::StateButtonsView.new(task).render.html_safe
+        td = StateButtonsView.new(task).render.html_safe
         td = button_to 'Show', project_task_path(@project, task),
           method: :get, class: "btn-success btn-mini"
         td = button_to 'Edit', edit_project_task_path(@project, task),

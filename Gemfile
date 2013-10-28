@@ -13,7 +13,6 @@ gem 'slim',                   '2.0.1'
 gem 'default_value_for',      github: 'tsmango/default_value_for'
 gem 'micromachine',           '1.1.0'
 gem 'decent_exposure',        '2.3.0'
-gem 'nokogiri',               '1.6.0'
 
 group :doc do
   gem 'sdoc',                 '0.3.20', require: false

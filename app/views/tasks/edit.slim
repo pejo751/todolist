@@ -1,7 +1,7 @@
-h1 = "Editing \"#{@project.name}\" project task"
+h1 = "Editing \"#{parent.name}\" project task"
 
-== render 'form', project: @project, task: @task
+== render 'form', project: parent, task: task
 
-= link_to 'Show', [@project, @task]
+= link_to 'Show', [parent, task]
 = ' | '
 = link_to 'Back', project_tasks_path

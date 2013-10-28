@@ -1,6 +1,6 @@
 h1 Listing projects
 
-p = link_to 'New Project', new_project_path
+p = link_to 'New Project', new_resource_path
 
 table class='table'
   thead
@@ -13,7 +13,7 @@ table class='table'
       th
 
   tbody
-    - @projects.each do |project|
+    - projects.each do |project|
       tr
         td = project.name
         td = project.description

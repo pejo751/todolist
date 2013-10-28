@@ -3,44 +3,44 @@ p id="notice"
 
 p
   strong Name: 
-  = @task.name
+  = task.name
 
 p
   strong Programmer: 
-  = @task.programmer
+  = task.programmer
 
 p
   strong Kind: 
-  = @task.kind
+  = task.kind
 
 p
   strong Project: 
-  = @task.project_name
+  = task.project_name
 
 p
   strong Priority: 
-  = @task.priority
+  = task.priority
 
 p
   strong Notes: 
-  = @task.notes
+  = task.notes
 
 p
   strong Budget: 
-  = @task.budget
+  = task.budget
 
 p
   strong Started on: 
-  = @task.started_on
+  = task.started_on
 
 p
   strong Completed on: 
-  = @task.completed_on
+  = task.completed_on
 
 p
   strong State: 
-  = @task.state
+  = task.state
 
-= link_to 'Edit', edit_project_task_path(@project, @task)
+= link_to 'Edit', edit_project_task_path(parent, task)
 = ' | '
 = link_to 'Back', project_tasks_path

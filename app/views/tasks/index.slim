@@ -1,4 +1,4 @@
-h1 = "Listing tasks \"#{@project.name}\" project"
+h1 = "Listing tasks \"#{parent.name}\" project"
 
 p = link_to 'New Task', new_project_task_path
 
@@ -17,7 +17,7 @@ table class='table'
       th
 
   tbody
-    - @tasks.each do |task|
+    - tasks.each do |task|
       tr
         td = task.name
         td = task.programmer
@@ -26,11 +26,11 @@ table class='table'
         td = !task.notes.empty? ? "#{task.notes[0..30].rstrip}..." : ''
         td = task.budget
         td = StateButtonsView.new(task).render.html_safe
-        td = button_to 'Show', project_task_path(@project, task),
+        td = button_to 'Show', project_task_path(parent, task),
           method: :get, class: "btn-success btn-mini"
-        td = button_to 'Edit', edit_project_task_path(@project, task),
+        td = button_to 'Edit', edit_project_task_path(parent, task),
           method: :get, class: "btn-warning btn-mini"
-        td = button_to 'Destroy', [@project, task], method: :delete,
+        td = button_to 'Destroy', [parent, task], method: :delete,
           data: { confirm: 'Are you sure?' }, class: "btn-danger btn-mini"
 
 p = link_to 'Back to Projects', projects_path

@@ -9,5 +9,11 @@ html lang="en"
     div class="container"
       == render 'layouts/header'
       div class="main"
+        - if notice
+          div class="notice"
+            = notice
+        - if alert
+          div class="alert"
+            = alert
         == yield
     = javascript_include_tag  "application"

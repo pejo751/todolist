@@ -1,5 +1,4 @@
 require 'spec_helper'
-include Capybara::DSL
 
 feature 'first scenario' do
 

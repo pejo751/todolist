@@ -1,5 +1,4 @@
 require 'spec_helper'
-include Rails.application.routes.url_helpers
 
 describe StateButtonsView do
   context "with a started task" do

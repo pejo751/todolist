@@ -1,5 +1,4 @@
 require 'spec_helper'
-include Capybara::DSL
 
 feature 'registering new project' do
 
@@ -10,7 +9,7 @@ feature 'registering new project' do
       fill_in 'Description', with: 'bla bla bla'
     end
     click_button 'Create Project'
-    save_and_open_page
+    # save_and_open_page
     expect(page).to have_content 'Project was successfully created.'
   end
 end

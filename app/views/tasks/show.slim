@@ -3,44 +3,44 @@ p id="notice"
 
 p
   strong Name: 
-  = task.name
+  = resource.name
 
 p
   strong Programmer: 
-  = task.programmer
+  = resource.programmer
 
 p
   strong Kind: 
-  = task.kind
+  = resource.kind
 
 p
   strong Project: 
-  = task.project_name
+  = resource.project_name
 
 p
   strong Priority: 
-  = task.priority
+  = resource.priority
 
 p
   strong Notes: 
-  = task.notes
+  = resource.notes
 
 p
   strong Budget: 
-  = task.budget
+  = resource.budget
 
 p
   strong Started on: 
-  = task.started_on
+  = resource.started_on
 
 p
   strong Completed on: 
-  = task.completed_on
+  = resource.completed_on
 
 p
   strong State: 
-  = task.state
+  = resource.state
 
-= link_to 'Edit', edit_project_task_path(parent, task)
+= link_to 'Edit', edit_project_task_path(parent, resource)
 = ' | '
 = link_to 'Back', project_tasks_path

@@ -19,6 +19,8 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.infer_base_class_for_anonymous_controllers = false
   config.order = "random"
+  config.include Capybara::DSL, :type => :feature
+  config.include Rails.application.routes.url_helpers
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :truncation
@@ -34,6 +36,5 @@ RSpec.configure do |config|
 
 end
 
-Capybara.default_host = '127.0.0.1:3001'
 Capybara.default_host = 'http://localhost:3000/'
 Capybara.run_server = true

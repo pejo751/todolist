@@ -1,6 +1,6 @@
 Todolist::Application.routes.draw do
 
-  root 'home#index'
+  root to: 'home#index'
 
   resources :projects do
     resources :tasks do

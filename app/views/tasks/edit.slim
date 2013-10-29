@@ -1,7 +1,7 @@
 h1 = "Editing \"#{parent.name}\" project task"
 
-== render 'form', project: parent, task: task
+== render 'form', task: resource
 
-= link_to 'Show', [parent, task]
+= link_to 'Show', [parent, resource]
 = ' | '
 = link_to 'Back', project_tasks_path

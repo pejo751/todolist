@@ -2,9 +2,6 @@ class TasksController < InheritedResources::Base
 
   belongs_to :project
 
-  expose(:tasks) { parent.tasks }
-  expose(:task)
-
   def create
     create! { collection_url }
   end

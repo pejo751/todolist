@@ -6,7 +6,7 @@ describe Task do
     FactoryGirl.create(:task)
   end
 
-  describe "attributes" do
+  describe 'attributes' do
     it { should have_db_column(:notes).of_type(:text) }
     it { should have_db_column(:name).of_type(:string) }
     it { should have_db_column(:programmer).of_type(:string) }
@@ -20,11 +20,11 @@ describe Task do
     it { should_not allow_value(-1).for(:budget) }
   end
 
-  context "associations" do
+  context 'associations' do
     it { should belong_to(:project) }
   end
 
-  context "validations" do
+  context 'validations' do
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:programmer) }
     it { should validate_presence_of(:kind) }

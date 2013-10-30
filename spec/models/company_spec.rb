@@ -1,21 +1,20 @@
 require 'spec_helper'
 
-describe Project do
-
+describe Company do
   before :each do
-    FactoryGirl.create(:project)
+    FactoryGirl.create(:company)
   end
 
   describe 'attributes' do
     it { should have_db_column(:name).of_type(:string) }
-    it { should have_db_column(:description).of_type(:text) }
   end
 
   context 'associations' do
-    it { should have_many(:tasks).dependent(:destroy) }
+    it { should have_many(:users) }
   end
 
   context 'validations' do
     it { should validate_presence_of(:name) }
+    it { should validate_uniqueness_of(:name) }
   end
 end

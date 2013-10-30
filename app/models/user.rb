@@ -7,4 +7,6 @@ class User < ActiveRecord::Base
   belongs_to :company
   accepts_nested_attributes_for :company
 
+  validates :full_name, presence: true
+
 end

@@ -3,6 +3,9 @@ Todolist::Application.routes.draw do
   resources :companies
 
   devise_for :users
+  devise_scope :user do
+    get "signup", :to => "devise/registrations#new"
+  end
   root to: 'home#index'
 
   resources :projects do

@@ -1,5 +1,20 @@
 require 'spec_helper'
 
 describe Company do
-  pending "add some examples to (or delete) #{__FILE__}"
+  before :each do
+    FactoryGirl.create(:company)
+  end
+
+  describe "attributes" do
+    it { should have_db_column(:name).of_type(:string) }
+  end
+
+  context 'associations' do
+    # it { should have_many(:users).dependent(:destroy) }
+    it { should have_many(:users) }
+  end
+
+  context "validations" do
+    it { should validate_presence_of(:name) }
+  end
 end

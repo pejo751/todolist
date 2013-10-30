@@ -1,11 +1,5 @@
 Todolist::Application.routes.draw do
 
-  resources :companies
-
-  devise_for :users
-  devise_scope :user do
-    get "signup", :to => "devise/registrations#new"
-  end
   root to: 'home#index'
 
   resources :projects do
@@ -16,5 +10,10 @@ Todolist::Application.routes.draw do
 
   put "/projects/:project_id/tasks/:task_id/stages/:id" => "stages#update",
     as: :stage_change
+
+  devise_for :users
+  devise_scope :user do
+    get "signup", :to => "devise/registrations#new"
+  end
 
 end

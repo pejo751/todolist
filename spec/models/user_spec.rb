@@ -5,7 +5,7 @@ describe User do
     FactoryGirl.create(:user)
   end
 
-  describe "attributes" do
+  describe 'attributes' do
     it { should have_db_column(:email).of_type(:string) }
     it { should have_db_column(:encrypted_password).of_type(:string) }
     it { should have_db_column(:reset_password_token).of_type(:string) }
@@ -23,7 +23,8 @@ describe User do
     it { should belong_to(:company) }
   end
 
-  context "validations" do
+  context 'validations' do
     it { should validate_presence_of(:full_name) }
+    it { should validate_uniqueness_of(:email) }
   end
 end

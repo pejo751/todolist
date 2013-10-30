@@ -4,7 +4,7 @@ h2 Sign up
     url: registration_path(resource_name) do |f|
   = devise_error_messages!
 
-  = f.fields_for :company_attributes do |company_form|
+  = f.fields_for :company_attributes, resource.company do |company_form|
     div class="field"
       = company_form.label :name, "Company Name", class: "label"
       br

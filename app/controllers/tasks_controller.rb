@@ -14,9 +14,7 @@ private
 
   def permitted_params
       params.permit(
-        task: [
-          :name, :programmer, :priority, :notes, :budget, :kind
-        ]
+        task: [:name, :programmer, :priority, :notes, :budget, :kind]
       )
   end
 end

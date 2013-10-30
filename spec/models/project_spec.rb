@@ -6,7 +6,7 @@ describe Project do
     FactoryGirl.create(:project)
   end
 
-  describe "attributes" do
+  describe 'attributes' do
     it { should have_db_column(:name).of_type(:string) }
     it { should have_db_column(:description).of_type(:text) }
   end
@@ -15,7 +15,7 @@ describe Project do
     it { should have_many(:tasks).dependent(:destroy) }
   end
 
-  context "validations" do
+  context 'validations' do
     it { should validate_presence_of(:name) }
   end
 end

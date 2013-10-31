@@ -24,5 +24,12 @@ div class="navbar navbar-default navbar-static-top"
       ul class="nav navbar-nav navbar-right"
         li = link_to 'Default', "#"
         li class="active"
-          = link_to 'Static top', "#"
-        li = link_to 'Sign out', destroy_user_session_path, method: :delete
+          - if user_signed_in?
+            = link_to current_user.email, "#"
+          - else
+            = link_to 'Static top', "#"
+        li
+          - if user_signed_in?
+            = link_to 'Sign out', signout_path, method: :delete
+          - else
+            = link_to 'Sign in', signin_path

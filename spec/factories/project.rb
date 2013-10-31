@@ -2,6 +2,9 @@
 FactoryGirl.define do
 
   factory :project do
+    user
+    company
+
     sequence(:name) { |n| "Project ##{n}" }
     description     "some project description"
 

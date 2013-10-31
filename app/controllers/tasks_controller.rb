@@ -1,4 +1,5 @@
 class TasksController < InheritedResources::Base
+  before_action :authenticate_user!
 
   belongs_to :project
 

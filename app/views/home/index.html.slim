@@ -12,9 +12,9 @@ table class='table'
       th Kind
       th Priority
       th Notes
+      th State
       th Started on
       th Completed on
-      th State
 
   tbody
     - tasks.each do |task|
@@ -26,6 +26,6 @@ table class='table'
         td = task.kind
         td = task.priority
         td = !task.notes.empty? ? "#{task.notes[0..30].rstrip}..." : ''
+        td = task.state
         td = task.started_on
         td = task.completed_on
-        td = task.state

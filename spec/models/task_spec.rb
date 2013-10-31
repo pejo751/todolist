@@ -35,4 +35,10 @@ describe Task do
       :budget).is_greater_than_or_equal_to(0.0)
     }
   end
+
+  context 'factory' do
+    it "creates a valid task" do
+      expect{ FactoryGirl.create(:task) }.to change{ Task.count }.by(1)
+    end
+  end
 end

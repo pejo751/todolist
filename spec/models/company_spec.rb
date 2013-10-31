@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Company do
+
   before :each do
     FactoryGirl.create(:company)
   end
@@ -11,6 +12,7 @@ describe Company do
 
   context 'associations' do
     it { should have_many(:users) }
+    it { should have_many(:projects) }
   end
 
   context 'validations' do

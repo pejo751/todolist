@@ -13,6 +13,10 @@ class ProjectsController < InheritedResources::Base
     create!
   end
 
+  def destroy
+    destroy! { company_projects_url(current_user.company) }
+  end
+
 private
 
   def permitted_params

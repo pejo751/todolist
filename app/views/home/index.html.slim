@@ -1,6 +1,6 @@
 h1 Listing tasks
 
-p = link_to 'Projects', projects_path
+p = link_to 'Projects', company_projects_path(current_user.company)
 
 table class='table'
   thead

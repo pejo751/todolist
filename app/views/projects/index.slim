@@ -5,8 +5,10 @@ p = link_to 'New Project', new_project_path
 table class='table'
   thead
     tr
+      th Company
       th Name
       th Description
+      th Counted tasks
       th
       th
       th
@@ -15,8 +17,10 @@ table class='table'
   tbody
     - collection.each do |project|
       tr
+        td = project.company.name
         td = project.name
         td = project.description
+        td = project.tasks.count
         td = button_to 'Show', project, method: :get,
           class: "btn-success btn-mini"
         td = button_to 'Edit', edit_project_path(project), method: :get,
@@ -25,5 +29,3 @@ table class='table'
           data: { confirm: 'Are you sure?' }, class: "btn-danger btn-mini"
         td = button_to 'Tasks', project_tasks_path(project), method: :get,
           class: "btn-default btn-mini"
-
-p = link_to 'Back to Home', root_path

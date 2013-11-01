@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe User do
+
   before :each do
     FactoryGirl.create(:user)
   end
@@ -26,5 +27,11 @@ describe User do
   context 'validations' do
     it { should validate_presence_of(:full_name) }
     it { should validate_uniqueness_of(:email) }
+  end
+
+  context 'factory' do
+    it "creates a valid user" do
+      expect{ FactoryGirl.create(:user) }.to change{ User.count }.by(1)
+    end
   end
 end

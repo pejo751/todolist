@@ -1,6 +1,11 @@
 Todolist::Application.routes.draw do
+  devise_for :users
 
-  root to: 'home#index'
+  devise_scope :user do
+    get    "signup",  to: "devise/registrations#new"
+    get    "signin",  to: "devise/sessions#new"
+    delete "signout", to: "devise/sessions#destroy"
+  end
 
   resources :projects do
     resources :tasks do
@@ -11,9 +16,5 @@ Todolist::Application.routes.draw do
   put "/projects/:project_id/tasks/:task_id/stages/:id" => "stages#update",
     as: :stage_change
 
-  devise_for :users
-  devise_scope :user do
-    get "signup", :to => "devise/registrations#new"
-  end
-
+  root to: 'home#index'
 end

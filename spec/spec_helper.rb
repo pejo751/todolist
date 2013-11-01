@@ -1,8 +1,7 @@
-
-ENV["RAILS_ENV"] ||= 'test'
-
 require 'simplecov'
 SimpleCov.start
+
+ENV["RAILS_ENV"] ||= 'test'
 
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
@@ -38,3 +37,12 @@ end
 
 Capybara.default_host = 'http://localhost:3000/'
 Capybara.run_server = true
+
+def login_with(user)
+  visit new_user_session_path
+
+  fill_in "user[email]",    with: user.email
+  fill_in "user[password]", with: "12345678"
+
+  click_on "Login"
+end

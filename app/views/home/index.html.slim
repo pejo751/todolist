@@ -6,26 +6,22 @@ table class='table'
   thead
     tr
       th Created at
+      th State
+      th Company
       th Project
       th Name
       th Programmer
       th Kind
       th Priority
-      th Notes
-      th Started on
-      th Completed on
-      th State
 
   tbody
     - tasks.each do |task|
       tr
-        td = task.created_at
+        td = task.created_at.to_date
+        td = task.state
+        td = task.project.company.name
         td = task.project_name
         td = task.name
         td = task.programmer
         td = task.kind
         td = task.priority
-        td = !task.notes.empty? ? "#{task.notes[0..30].rstrip}..." : ''
-        td = task.started_on
-        td = task.completed_on
-        td = task.state

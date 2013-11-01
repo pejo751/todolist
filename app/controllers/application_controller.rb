@@ -10,4 +10,9 @@ protected
         company_attributes: [:name])
     end
   end
+
+  def current_company
+    @current_company ||= current_user.company
+  end
+  helper_method :current_company
 end

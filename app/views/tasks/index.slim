@@ -33,4 +33,4 @@ table class='table'
         td = button_to 'Destroy', [parent, task], method: :delete,
           data: { confirm: 'Are you sure?' }, class: "btn-danger btn-mini"
 
-p = link_to 'Back to Projects', company_projects_path(current_user.company)
+p = link_to 'Back to Projects', projects_path

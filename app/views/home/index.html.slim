@@ -1,31 +1,27 @@
 h1 Listing tasks
 
-p = link_to 'Projects', company_projects_path(current_user.company)
+p = link_to 'Projects', projects_path
 
 table class='table'
   thead
     tr
       th Created at
+      th State
+      th Company
       th Project
       th Name
       th Programmer
       th Kind
       th Priority
-      th Notes
-      th State
-      th Started on
-      th Completed on
 
   tbody
     - tasks.each do |task|
       tr
-        td = task.created_at
+        td = task.created_at.to_date
+        td = task.state
+        td = task.project.company.name
         td = task.project_name
         td = task.name
         td = task.programmer
         td = task.kind
         td = task.priority
-        td = !task.notes.empty? ? "#{task.notes[0..30].rstrip}..." : ''
-        td = task.state
-        td = task.started_on
-        td = task.completed_on

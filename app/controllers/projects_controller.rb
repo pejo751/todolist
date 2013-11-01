@@ -9,12 +9,17 @@ class ProjectsController < InheritedResources::Base
   def create
     @project = build_resource
     @project.user = current_user
-    @project.company = current_user.company
+    @project.company = current_company
     create!
   end
 
   def destroy
-    destroy! { company_projects_url(current_user.company) }
+    destroy! { projects_url }
+  end
+
+  def index
+    @projects = current_company.projects
+    index!
   end
 
 private
